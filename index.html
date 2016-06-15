@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="de" ng-app>
+<html lang="de" ng-app="burgerRatingApp">
 <head>
 	<meta charset="UTF-8">
 	<title>Burger Rating Machine</title>
 
-	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
 
@@ -19,65 +19,15 @@
 	</div>
 </nav>
 
-<div class="container ratings" ng-controller="RestaurantCtrl">
+<div class="container ratings" ng-controller="restaurantCtrl">
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-md-3" ng-repeat="restaurant in restaurants">
 			<div class="panel panel-default">
-				<div class="panel-heading">Restaurant Name</div>
+				<div class="panel-heading">{{restaurant.name}}</div>
 				<div class="panel-body">
-					<p><b>Adresse: </b> Straße Nr., Postcode, Land</p>
-					<p><b>Anzahl Bewertungen</b>: 4</p>
-					<p><b>Gesamtbewertung</b>: 4 von 5 Punkten</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="panel panel-default">
-				<div class="panel-heading">Restaurant Name</div>
-				<div class="panel-body">
-					<p><b>Adresse: </b> Straße Nr., Postcode, Land</p>
-					<p><b>Anzahl Bewertungen</b>: 4</p>
-					<p><b>Gesamtbewertung</b>: 4 von 5 Punkten</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="panel panel-default">
-				<div class="panel-heading">Restaurant Name</div>
-				<div class="panel-body">
-					<p><b>Adresse: </b> Straße Nr., Postcode, Land</p>
-					<p><b>Anzahl Bewertungen</b>: 4</p>
-					<p><b>Gesamtbewertung</b>: 4 von 5 Punkten</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="panel panel-default">
-				<div class="panel-heading">Restaurant Name</div>
-				<div class="panel-body">
-					<p><b>Adresse: </b> Straße Nr., Postcode, Land</p>
-					<p><b>Anzahl Bewertungen</b>: 4</p>
-					<p><b>Gesamtbewertung</b>: 4 von 5 Punkten</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="panel panel-default">
-				<div class="panel-heading">Restaurant Name</div>
-				<div class="panel-body">
-					<p><b>Adresse: </b> Straße Nr., Postcode, Land</p>
-					<p><b>Anzahl Bewertungen</b>: 4</p>
-					<p><b>Gesamtbewertung</b>: 4 von 5 Punkten</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="panel panel-default">
-				<div class="panel-heading">Restaurant Name</div>
-				<div class="panel-body">
-					<p><b>Adresse: </b> Straße Nr., Postcode, Land</p>
-					<p><b>Anzahl Bewertungen</b>: 4</p>
-					<p><b>Gesamtbewertung</b>: 4 von 5 Punkten</p>
+					<p><b>Adresse: </b> <span ng-bind="addressToString(restaurant)"></span></p>
+					<p><b>Anzahl Bewertungen</b>: {{restaurant.ratings.length}}</p>
+					<p><b>Gesamtbewertung</b>: {{restaurant.totalRating}} von 5 Punkten</p>
 				</div>
 			</div>
 		</div>
