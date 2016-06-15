@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c39369b7-2eb5-4d44-abd9-b64313c09083" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/JavaScript/app.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <ignored path="BurgerRating.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -234,12 +232,12 @@
       <option name="presentableId" value="Default" />
       <updated>1466011004706</updated>
       <workItem from="1466011005954" duration="4161000" />
-      <workItem from="1466015185655" duration="94000" />
+      <workItem from="1466015185655" duration="125000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4255000" />
+    <option name="totallyTimeSpent" value="4286000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
