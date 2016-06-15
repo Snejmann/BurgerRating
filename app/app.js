@@ -44,7 +44,7 @@ var restaurants = [
             {
                 user: 'Reinhold',
                 points: 2
-            },
+            }
         ]
     },
     {
@@ -80,28 +80,67 @@ var restaurants = [
             {
                 user: 'Ulf',
                 points: 1
+            },
+            {
+                user: 'Ulf',
+                points: 1
             }
         ]
     }
 ];
 
-restaurants = restaurants.map(function (restaurant) {
-    restaurant['totalRating'] =
-        restaurant.ratings.reduce(function (totalRating, rating) {
-            return totalRating + rating.points;
-        }, 0) / restaurant.ratings.length;
-    return restaurant;
-});
-
 var burgerRatingApp = angular.module('burgerRatingApp', []);
 
-burgerRatingApp.controller('restaurantCtrl', ['$scope', function ($scope) {
-    $scope.restaurants = restaurants;
+burgerRatingApp
+    .controller('dataCtrl', ['$scope', function ($scope) {
+        $scope.restaurants = restaurants;
 
-    $scope.addressToString = function(restaurant) {
-        var address =  restaurant.address;
-        return address.route + ' ' + address.street_number + ', ' + address.locality + ', ' + address.country;
-    }
-}]);
+        $scope.totalRatingCount = function(restaurant) {
+            console.log(restaurant);
+            return Math.round(restaurant.ratings.reduce(function (totalRating, rating) {
+                    return totalRating + parseInt(rating.points);
+                }, 0) / restaurant.ratings.length * 100) / 100;
+        };
+
+        $scope.addressToString = function (restaurant) {
+            var address = restaurant.address;
+            return address.route + ' ' + address.street_number + ', ' + address.locality + ', ' + address.country;
+        }
+    }])
+    .controller('restaurantCtrl', function () {
+        this.restaurant = {
+            ratings: {}
+        };
+
+        this.address= {};
+
+        this.addRestaurant = function(restaurants) {
+            this.restaurant['address'] = this.address;
+            restaurants.push(this.restaurant);
+
+            this.restaurant = {
+                ratings: {}
+            };
+
+            this.address = {};
+        }
+    })
+    .controller('ratingCtrl', function () {
+        this.restaurant = {};
+
+        this.rating = {
+            user: 'Dumbo'
+        };
+
+        this.addRating = function(restaurants) {
+            var rest = this.restaurant['name'];
+            var myRestaurant = restaurants.find(function(restaurant) {
+                return restaurant.name == rest.name;
+            });
+            if (myRestaurant != 'undefined')
+                myRestaurant['ratings'].push(this.rating);
+        }
+    });
+
 
 

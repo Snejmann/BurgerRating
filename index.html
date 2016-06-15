@@ -19,15 +19,91 @@
 	</div>
 </nav>
 
-<div class="container ratings" ng-controller="restaurantCtrl">
+<div class="container ratings" ng-controller="dataCtrl">
+	<div class="row">
+		<div class="col-md-6">
+			<form name="restaurantForm" ng-controller="restaurantCtrl as form"
+				  ng-submit="restaurantForm.$valid && form.addRestaurant(restaurants)">
+				<fieldset>
+					<legend>Neues Restaurant hinzufügen</legend>
+					<div class="row">
+						<div class="form-group col-md-12">
+							<label for="restaurant-name">Name</label>
+							<input id="restaurant-name" class="form-control" type="text"
+								   ng-model="form.restaurant.name" required
+								   name="name"/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label for="restaurant-street">Straße</label>
+							<input id="restaurant-street" class="form-control" required type="text"
+								   ng-model="form.address.route" name="route"/>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="restaurant-streetNumber">Hausnummer</label>
+							<input id="restaurant-streetNumber" class="form-control" required type="text"
+								   ng-model="form.address.street_number" name="streetNumber"/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label for="restaurant-locality">Ort</label>
+							<input id="restaurant-locality" class="form-control" required type="text"
+								   ng-model="form.address.locality" name="locality"/>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="restaurant-country">Land</label>
+							<input id="restaurant-country" class="form-control" required type="text"
+								   ng-model="form.address.country" name="country"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-default">Hinzufügen</button>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+		<div class="col-md-6">
+			<form name="ratingForm" ng-controller="ratingCtrl as form"
+				  ng-submit="ratingForm.$valid && form.addRating(restaurants)">
+				<fieldset>
+					<legend>Neue Bewertung hinzufügen</legend>
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label for="rating-restaurant">Restaurant</label>
+							<select id="rating-restaurant" class="form-control" required
+									ng-model="form.restaurant.name" name="restaurant"
+									ng-options="restaurant as restaurant.name for restaurant in restaurants">
+
+							</select>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="rating-points">Punkte</label>
+							<select id="rating-points" name="points" class="form-control" required ng-model="form.rating.points">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-default">Hinzufügen</button>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-md-3" ng-repeat="restaurant in restaurants">
 			<div class="panel panel-default">
 				<div class="panel-heading">{{restaurant.name}}</div>
 				<div class="panel-body">
 					<p><b>Adresse: </b> <span ng-bind="addressToString(restaurant)"></span></p>
-					<p><b>Anzahl Bewertungen</b>: {{restaurant.ratings.length}}</p>
-					<p><b>Gesamtbewertung</b>: {{restaurant.totalRating}} von 5 Punkten</p>
+					<p><b>Anzahl Bewertungen</b>: {{!restaurant.ratings.length?0:restaurant.ratings.length}}</p>
+					<p><b>Gesamtbewertung</b>: {{totalRatingCount(restaurant)}} von 5 Punkten</p>
 				</div>
 			</div>
 		</div>
